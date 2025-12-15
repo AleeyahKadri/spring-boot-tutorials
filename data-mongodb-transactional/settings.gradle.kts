@@ -1,1 +1,1 @@
-rootProject.name = "data-mongodb-transactional"
+rootProject.name = "data-mongodb-tm"
