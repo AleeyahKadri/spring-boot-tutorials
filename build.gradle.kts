@@ -33,9 +33,7 @@ dependencies {
 
 reporting {
     reports {
-        create<JacocoCoverageReport>("testCodeCoverageReport") {
-            testType = TestSuiteType.UNIT_TEST
-        }
+        named<JacocoCoverageReport>("testCodeCoverageReport")
     }
 }
 
@@ -53,8 +51,10 @@ subprojects {
         plugin("jacoco")
     }
 
-    tasks.named<Test>("test") {
-        finalizedBy(tasks.named("jacocoTestReport"))
+    tasks.configureEach {
+        if (this is Test) {
+            finalizedBy(tasks.named("jacocoTestReport"))
+        }
     }
 }
 
