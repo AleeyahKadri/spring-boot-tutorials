@@ -47,8 +47,6 @@ jooq {
 
 	configurations {
 		create("main") {
-			generateSchemaSourceOnCompilation = true
-
 			jooqConfiguration.apply {
 				generator.apply {
 					database.apply {
