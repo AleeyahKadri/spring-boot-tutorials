@@ -1,3 +1,4 @@
+import org.gradle.api.tasks.testing.Test
 import nu.studer.gradle.jooq.JooqEdition
 
 plugins {
@@ -33,7 +34,7 @@ dependencies {
 
 dependencyManagement {
 	dependencies {
-		dependency 'org.jooq:jooq-meta-extensions:' + dependencyManagement.importedProperties['jooq.version']
+		dependency("org.jooq:jooq-meta-extensions:${dependencyManagement.importedProperties["jooq.version"]}")
 	}
 }
 
@@ -42,7 +43,7 @@ tasks.named<Test>("test") {
 }
 
 jooq {
-	version = dependencyManagement.importedProperties['jooq.version']
+	version = dependencyManagement.importedProperties["jooq.version"] as String
 	edition = JooqEdition.OSS
 
 	configurations {
@@ -50,18 +51,18 @@ jooq {
 			generationTool {
 				generator {
 					database {
-						name = 'org.jooq.meta.extensions.ddl.DDLDatabase'
+						name = "org.jooq.meta.extensions.ddl.DDLDatabase"
 						properties {
 							property {
-								key = 'scripts'
-								value = 'src/main/resources/mysql-schema.sql'
+								key = "scripts"
+								value = "src/main/resources/mysql-schema.sql"
 							}
 						}
 					}
 					target {
-						packageName = 'zin.rashidi.boot.jooq'
+						packageName = "zin.rashidi.boot.jooq"
 					}
-					strategy.name = 'org.jooq.codegen.DefaultGeneratorStrategy'
+					strategy.name = "org.jooq.codegen.DefaultGeneratorStrategy"
 				}
 			}
 		}

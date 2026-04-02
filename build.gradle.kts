@@ -59,5 +59,5 @@ subprojects {
 }
 
 tasks.named("check") {
-    dependsOn tasks.named('testCodeCoverageReport', JacocoReport)
+    dependsOn(tasks.named<JacocoReport>("testCodeCoverageReport"))
 }

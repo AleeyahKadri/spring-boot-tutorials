@@ -1,3 +1,4 @@
+import org.gradle.api.tasks.testing.Test
 plugins {
     id("java")
     id("org.springframework.boot") version "3.4.5"
@@ -18,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    implementation platform("org.springframework.modulith:spring-modulith-bom:1.3.5")
+    implementation(platform("org.springframework.modulith:spring-modulith-bom:1.3.5"))
 
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     implementation("org.springframework.modulith:spring-modulith-starter-core")

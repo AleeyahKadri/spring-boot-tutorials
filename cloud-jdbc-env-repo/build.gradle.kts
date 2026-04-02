@@ -1,3 +1,4 @@
+import org.gradle.api.tasks.testing.Test
 plugins {
 	id("java")
 	id("org.springframework.boot") version "3.4.5"
@@ -24,7 +25,7 @@ repositories {
 }
 
 dependencies {
-	implementation platform("org.springframework.cloud:spring-cloud-dependencies:2024.0.1")
+	implementation(platform("org.springframework.cloud:spring-cloud-dependencies:2024.0.1"))
 
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 	implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
