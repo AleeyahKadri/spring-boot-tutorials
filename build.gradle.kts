@@ -1,4 +1,7 @@
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
+import org.gradle.api.tasks.testing.Test
+import org.gradle.testing.jacoco.plugins.JacocoCoverageReport
+import org.gradle.testing.jacoco.tasks.JacocoReport
 
 plugins {
     id("java")
@@ -33,7 +36,7 @@ dependencies {
 
 reporting {
     reports {
-        testCodeCoverageReport(JacocoCoverageReport) {
+        named<JacocoCoverageReport>("testCodeCoverageReport") {
             testSuiteName = "test"
         }
     }
@@ -53,8 +56,10 @@ subprojects {
         plugin("jacoco")
     }
 
-    test {
-        finalizedBy(tasks.named("jacocoTestReport"))
+    plugins.withId("java") {
+        tasks.named<Test>("test") {
+            finalizedBy(tasks.named("jacocoTestReport"))
+        }
     }
 }
 
