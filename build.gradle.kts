@@ -26,7 +26,7 @@ repositories {
 
 dependencies {
     subprojects.forEach { p ->
-        implementation(project(":${p.name}"))
+        jacocoAggregation(project(":${p.name}"))
     }
 }
 
